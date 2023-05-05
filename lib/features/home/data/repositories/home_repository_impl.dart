@@ -30,4 +30,12 @@ class HomeRepositoryImpl implements HomeRepository {
       return result;
     }, networkInfo: networkInfo);
   }
+
+  @override
+  Future<Photo> getPhoto({required int id}) {
+    return FailureHelper<Photo>().execute(() async {
+      final result = await remoteDataSource.getPhoto(id: id);
+      return result;
+    }, networkInfo: networkInfo);
+  }
 }

@@ -12,6 +12,7 @@ HomeRemoteDataSource homeRemoteDataSource(HomeRemoteDataSourceRef ref) {
 
 abstract class HomeRemoteDataSource {
   Future<List<Photo>> getPhotos({int? page, int? perPage});
+  Future<Photo> getPhoto({required int id});
   Future<List<Photo>> searchPhotos(
       {required String query, int? page = 1, int? perPage = 20});
 }
@@ -51,6 +52,16 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         listData.add(Photo.fromJson(data));
       }
       return listData;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<Photo> getPhoto({required int id}) async {
+    try {
+      final response = await dio.doGetRequest(url: '${Urls.baseUrl}/$id');
+      return Photo.fromJson(response);
     } catch (error) {
       rethrow;
     }
