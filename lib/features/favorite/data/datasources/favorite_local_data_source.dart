@@ -14,6 +14,7 @@ abstract class FavoriteLocalDataSource {
   Future<void> addToFav({required Photo photo});
   Future<void> removeFromFav({required int photoId});
   Future<bool> isInFav({required int photoId});
+  Future<List<Photo>> getAllPhotos({int? page, int? perPage});
 }
 
 class FavoriteLocalDataSourceImpl
@@ -56,6 +57,15 @@ class FavoriteLocalDataSourceImpl
       final result = await super.getById(id: photoId);
 
       return result != null;
+    } catch (e) {
+      throw DatabaseException();
+    }
+  }
+
+  @override
+  Future<List<Photo>> getAllPhotos({int? page, int? perPage}) async {
+    try {
+      return await super.getAll(page: page ?? 1, pageSize: perPage ?? 20);
     } catch (e) {
       throw DatabaseException();
     }

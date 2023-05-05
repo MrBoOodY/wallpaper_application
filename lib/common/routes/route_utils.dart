@@ -9,4 +9,8 @@ class RouteUtils {
       RouteKeys.photoId: photoId.toString(),
     });
   }
+
+  static goToFavPhotos() {
+    appContext.pushNamed(RouteStrings.favPhotos);
+  }
 }

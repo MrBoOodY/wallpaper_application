@@ -3,4 +3,5 @@ class RouteStrings {
   static String home = '/home';
   static String favorites = '/favorites';
   static String photoDetails = '/photoDetails';
+  static String favPhotos = '/favPhotos';
 }

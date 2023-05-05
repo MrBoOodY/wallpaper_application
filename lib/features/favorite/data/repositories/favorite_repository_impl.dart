@@ -39,4 +39,13 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
       },
     );
   }
+
+  @override
+  Future<List<Photo>> getAllPhotos({int? page, int? perPage}) {
+    return FailureHelper<List<Photo>>().execute(() async {
+      final result =
+          await localDataSource.getAllPhotos(page: page, perPage: perPage);
+      return result;
+    });
+  }
 }

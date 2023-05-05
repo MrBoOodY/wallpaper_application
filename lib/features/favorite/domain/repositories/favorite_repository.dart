@@ -15,4 +15,5 @@ abstract class FavoriteRepository {
   Future<void> addToFav({required Photo photo});
   Future<void> removeFromFav({required int photoId});
   Future<bool> isInFav({required int photoId});
+  Future<List<Photo>> getAllPhotos({int? page, int? perPage});
 }

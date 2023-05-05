@@ -154,13 +154,10 @@ mixin DataSourceSQFLiteOperation<T> {
     }
   }
 
-  Future<List<T>> getAll(
-      {required String chatId, int? page, int? pageSize}) async {
+  Future<List<T>> getAll({int? page, int? pageSize}) async {
     try {
       final result = await sqliteService.database.query(
         tableName,
-        where: 'id = ?',
-        whereArgs: [chatId],
         limit: pageSize,
         offset: page,
       );
