@@ -10,18 +10,18 @@ _$_LikeResponseEntity _$$_LikeResponseEntityFromJson(
         Map<String, dynamic> json) =>
     _$_LikeResponseEntity(
       id: json['id'] as int?,
-      createdAt: json['createdAt'] as String?,
-      updatedAt: json['updatedAt'] as String?,
-      userId: json['userId'] as int?,
-      userAdvertisementId: json['userAdvertisementId'] as int?,
+      createdAt: json['created_at'] as String?,
+      updatedAt: json['updated_at'] as String?,
+      userId: json['user_id'] as int?,
+      userAdvertisementId: json['user_advertisement_id'] as int?,
     );
 
 Map<String, dynamic> _$$_LikeResponseEntityToJson(
         _$_LikeResponseEntity instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'createdAt': instance.createdAt,
-      'updatedAt': instance.updatedAt,
-      'userId': instance.userId,
-      'userAdvertisementId': instance.userAdvertisementId,
+      'created_at': instance.createdAt,
+      'updated_at': instance.updatedAt,
+      'user_id': instance.userId,
+      'user_advertisement_id': instance.userAdvertisementId,
     };

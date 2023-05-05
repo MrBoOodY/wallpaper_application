@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 // ignore: depend_on_referenced_packages
@@ -12,12 +13,22 @@ import '../../constants/strings.dart';
 
 part 'dio_helper.g.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 @riverpod
 Dio client(ClientRef ref) {
   return Dio()
     ..interceptors.add(RequestsInspectorInterceptor())
     ..options.baseUrl = Urls.baseUrl
     ..options.headers = {
+      'Accept': '*/*',
       'Authorization':
           'DmzXTIB1e58YwvG5CG1DkO4gzm4giBOJnsjikzxjgFxnSEkANlwjuMcg'
     };

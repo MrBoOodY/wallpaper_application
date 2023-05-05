@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:wallpaper_application/features/home/data/models/image.dart';
 
 part 'photo.freezed.dart';
 part 'photo.g.dart';
@@ -14,7 +15,7 @@ abstract class Photo with _$Photo {
     String? photographerUrl,
     int? photographerId,
     String? avgColor,
-    Map<String, String>? src,
+    ImageModel? src,
     bool? liked,
     String? alt,
   }) = _Photo;

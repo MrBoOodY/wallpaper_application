@@ -20,4 +20,14 @@ class HomeRepositoryImpl implements HomeRepository {
       return result;
     }, networkInfo: networkInfo);
   }
+
+  @override
+  Future<List<Photo>> searchPhotos(
+      {required String query, int? page = 1, int? perPage = 20}) {
+    return FailureHelper<List<Photo>>().execute(() async {
+      final result = await remoteDataSource.searchPhotos(
+          query: query, page: page, perPage: perPage);
+      return result;
+    }, networkInfo: networkInfo);
+  }
 }

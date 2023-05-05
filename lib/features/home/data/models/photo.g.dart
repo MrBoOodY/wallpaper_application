@@ -12,12 +12,12 @@ _$_Photo _$$_PhotoFromJson(Map<String, dynamic> json) => _$_Photo(
       height: json['height'] as int?,
       url: json['url'] as String?,
       photographer: json['photographer'] as String?,
-      photographerUrl: json['photographerUrl'] as String?,
-      photographerId: json['photographerId'] as int?,
-      avgColor: json['avgColor'] as String?,
-      src: (json['src'] as Map<String, dynamic>?)?.map(
-        (k, e) => MapEntry(k, e as String),
-      ),
+      photographerUrl: json['photographer_url'] as String?,
+      photographerId: json['photographer_id'] as int?,
+      avgColor: json['avg_color'] as String?,
+      src: json['src'] == null
+          ? null
+          : ImageModel.fromJson(json['src'] as Map<String, dynamic>),
       liked: json['liked'] as bool?,
       alt: json['alt'] as String?,
     );
@@ -28,9 +28,9 @@ Map<String, dynamic> _$$_PhotoToJson(_$_Photo instance) => <String, dynamic>{
       'height': instance.height,
       'url': instance.url,
       'photographer': instance.photographer,
-      'photographerUrl': instance.photographerUrl,
-      'photographerId': instance.photographerId,
-      'avgColor': instance.avgColor,
+      'photographer_url': instance.photographerUrl,
+      'photographer_id': instance.photographerId,
+      'avg_color': instance.avgColor,
       'src': instance.src,
       'liked': instance.liked,
       'alt': instance.alt,

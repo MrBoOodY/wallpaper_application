@@ -28,7 +28,7 @@ mixin _$Photo {
   String? get photographerUrl => throw _privateConstructorUsedError;
   int? get photographerId => throw _privateConstructorUsedError;
   String? get avgColor => throw _privateConstructorUsedError;
-  Map<String, String>? get src => throw _privateConstructorUsedError;
+  ImageModel? get src => throw _privateConstructorUsedError;
   bool? get liked => throw _privateConstructorUsedError;
   String? get alt => throw _privateConstructorUsedError;
 
@@ -51,9 +51,11 @@ abstract class $PhotoCopyWith<$Res> {
       String? photographerUrl,
       int? photographerId,
       String? avgColor,
-      Map<String, String>? src,
+      ImageModel? src,
       bool? liked,
       String? alt});
+
+  $ImageModelCopyWith<$Res>? get src;
 }
 
 /// @nodoc
@@ -117,7 +119,7 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
       src: freezed == src
           ? _value.src
           : src // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
+              as ImageModel?,
       liked: freezed == liked
           ? _value.liked
           : liked // ignore: cast_nullable_to_non_nullable
@@ -127,6 +129,18 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
           : alt // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ImageModelCopyWith<$Res>? get src {
+    if (_value.src == null) {
+      return null;
+    }
+
+    return $ImageModelCopyWith<$Res>(_value.src!, (value) {
+      return _then(_value.copyWith(src: value) as $Val);
+    });
   }
 }
 
@@ -145,9 +159,12 @@ abstract class _$$_PhotoCopyWith<$Res> implements $PhotoCopyWith<$Res> {
       String? photographerUrl,
       int? photographerId,
       String? avgColor,
-      Map<String, String>? src,
+      ImageModel? src,
       bool? liked,
       String? alt});
+
+  @override
+  $ImageModelCopyWith<$Res>? get src;
 }
 
 /// @nodoc
@@ -205,9 +222,9 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
           : avgColor // ignore: cast_nullable_to_non_nullable
               as String?,
       src: freezed == src
-          ? _value._src
+          ? _value.src
           : src // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>?,
+              as ImageModel?,
       liked: freezed == liked
           ? _value.liked
           : liked // ignore: cast_nullable_to_non_nullable
@@ -232,10 +249,9 @@ class _$_Photo implements _Photo {
       this.photographerUrl,
       this.photographerId,
       this.avgColor,
-      final Map<String, String>? src,
+      this.src,
       this.liked,
-      this.alt})
-      : _src = src;
+      this.alt});
 
   factory _$_Photo.fromJson(Map<String, dynamic> json) =>
       _$$_PhotoFromJson(json);
@@ -256,16 +272,8 @@ class _$_Photo implements _Photo {
   final int? photographerId;
   @override
   final String? avgColor;
-  final Map<String, String>? _src;
   @override
-  Map<String, String>? get src {
-    final value = _src;
-    if (value == null) return null;
-    if (_src is EqualUnmodifiableMapView) return _src;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(value);
-  }
-
+  final ImageModel? src;
   @override
   final bool? liked;
   @override
@@ -293,26 +301,15 @@ class _$_Photo implements _Photo {
                 other.photographerId == photographerId) &&
             (identical(other.avgColor, avgColor) ||
                 other.avgColor == avgColor) &&
-            const DeepCollectionEquality().equals(other._src, _src) &&
+            (identical(other.src, src) || other.src == src) &&
             (identical(other.liked, liked) || other.liked == liked) &&
             (identical(other.alt, alt) || other.alt == alt));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      width,
-      height,
-      url,
-      photographer,
-      photographerUrl,
-      photographerId,
-      avgColor,
-      const DeepCollectionEquality().hash(_src),
-      liked,
-      alt);
+  int get hashCode => Object.hash(runtimeType, id, width, height, url,
+      photographer, photographerUrl, photographerId, avgColor, src, liked, alt);
 
   @JsonKey(ignore: true)
   @override
@@ -338,7 +335,7 @@ abstract class _Photo implements Photo {
       final String? photographerUrl,
       final int? photographerId,
       final String? avgColor,
-      final Map<String, String>? src,
+      final ImageModel? src,
       final bool? liked,
       final String? alt}) = _$_Photo;
 
@@ -361,7 +358,7 @@ abstract class _Photo implements Photo {
   @override
   String? get avgColor;
   @override
-  Map<String, String>? get src;
+  ImageModel? get src;
   @override
   bool? get liked;
   @override

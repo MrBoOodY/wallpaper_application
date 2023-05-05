@@ -15,4 +15,7 @@ HomeRepository homeRepository(HomeRepositoryRef ref) {
 
 abstract class HomeRepository {
   Future<List<Photo>> getPhotos({int? page, int? perPage});
+
+  Future<List<Photo>> searchPhotos(
+      {required String query, int? page = 1, int? perPage = 20});
 }

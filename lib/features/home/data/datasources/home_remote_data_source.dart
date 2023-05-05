@@ -11,7 +11,9 @@ HomeRemoteDataSource homeRemoteDataSource(HomeRemoteDataSourceRef ref) {
 }
 
 abstract class HomeRemoteDataSource {
-  Future<List<Photo>> getPhotos({int? page = 1, int? perPage = 20});
+  Future<List<Photo>> getPhotos({int? page, int? perPage});
+  Future<List<Photo>> searchPhotos(
+      {required String query, int? page = 1, int? perPage = 20});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -19,14 +21,33 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeRemoteDataSourceImpl({required this.dio});
 
   @override
-  Future<List<Photo>> getPhotos({int? page = 1, int? perPage = 20}) async {
+  Future<List<Photo>> getPhotos({int? page, int? perPage}) async {
     try {
       final response = await dio.doGetRequest(url: Urls.curated, queryParams: {
+        'per_page': perPage ?? 20,
+        'page': page ?? 1,
+      });
+      final List<Photo> listData = [];
+      for (var data in response['photos']) {
+        listData.add(Photo.fromJson(data));
+      }
+      return listData;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<List<Photo>> searchPhotos(
+      {required String query, int? page = 1, int? perPage = 20}) async {
+    try {
+      final response = await dio.doGetRequest(url: Urls.search, queryParams: {
+        'query': query,
         'per_page': perPage,
         'page': page,
       });
       final List<Photo> listData = [];
-      for (var data in response['data']) {
+      for (var data in response['photos']) {
         listData.add(Photo.fromJson(data));
       }
       return listData;

@@ -20,8 +20,8 @@ final routerProvider = Provider<GoRouter>(
           },
         ),
         GoRoute(
-          name: RouteStrings.initial,
-          path: RouteStrings.initial,
+          name: RouteStrings.home,
+          path: RouteStrings.home,
           builder: (context, state) {
             return const HomePage();
           },

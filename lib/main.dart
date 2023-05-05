@@ -1,21 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore: depend_on_referenced_packages
 import 'package:requests_inspector/requests_inspector.dart';
+import 'package:wallpaper_application/common/core_data_source/dio_helper/dio_helper.dart';
 import 'package:wallpaper_application/common/routes/routes/routes.dart';
 
 void main() async {
-  runApp(ProviderScope(
-    child: RequestsInspector(
-      enabled: kDebugMode,
-      child: Consumer(
-        builder: (context, ref, child) {
-          return const MyApp();
-        },
-      ),
-    ),
+  HttpOverrides.global = MyHttpOverrides();
+
+  runApp(const ProviderScope(
+    child: RequestsInspector(enabled: kDebugMode, child: MyApp()),
   ));
 }
 
@@ -32,7 +30,7 @@ class MyApp extends ConsumerWidget {
           child: child!,
         );
       },
-      routerConfig: ref.watch(routerProvider),
+      routerConfig: ref.read(routerProvider),
     );
   }
 }
