@@ -38,4 +38,12 @@ class HomeRepositoryImpl implements HomeRepository {
       return result;
     }, networkInfo: networkInfo);
   }
+
+  @override
+  Future<void> downloadPhoto({required String url}) {
+    return FailureHelper<void>().execute(() async {
+      final result = await remoteDataSource.downloadPhoto(url: url);
+      return result;
+    }, networkInfo: networkInfo);
+  }
 }

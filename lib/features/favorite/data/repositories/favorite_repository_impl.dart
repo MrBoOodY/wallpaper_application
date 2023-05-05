@@ -2,6 +2,7 @@ import 'package:wallpaper_application/features/favorite/data/datasources/favorit
 import 'package:wallpaper_application/features/favorite/domain/repositories/favorite_repository.dart';
 
 import '../../../../common/core_data_source/helpers.dart';
+import '../../../home/data/models/photo.dart';
 
 class FavoriteRepositoryImpl implements FavoriteRepository {
   final FavoriteLocalDataSource localDataSource;
@@ -10,12 +11,32 @@ class FavoriteRepositoryImpl implements FavoriteRepository {
   });
 
   @override
-  Future<bool> toggleLike({required int adId}) {
-    return FailureHelper<bool>().execute(() async {
-      final result = await localDataSource.toggleLike(
-        adId: adId,
+  Future<void> addToFav({required Photo photo}) {
+    return FailureHelper<void>().execute(() async {
+      final result = await localDataSource.addToFav(
+        photo: photo,
       );
       return result;
     });
+  }
+
+  @override
+  Future<void> removeFromFav({required int photoId}) {
+    return FailureHelper<void>().execute(
+      () async {
+        final result = await localDataSource.removeFromFav(photoId: photoId);
+        return result;
+      },
+    );
+  }
+
+  @override
+  Future<bool> isInFav({required int photoId}) {
+    return FailureHelper<bool>().execute(
+      () async {
+        final result = await localDataSource.isInFav(photoId: photoId);
+        return result;
+      },
+    );
   }
 }

@@ -19,4 +19,5 @@ abstract class HomeRepository {
 
   Future<List<Photo>> searchPhotos(
       {required String query, int? page = 1, int? perPage = 20});
+  Future<void> downloadPhoto({required String url});
 }

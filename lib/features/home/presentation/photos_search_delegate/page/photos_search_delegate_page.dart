@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wallpaper_application/common/routes/route_utils.dart';
 import 'package:wallpaper_application/features/home/presentation/photos_search_delegate/provider/photos_search_provider.dart';
 import 'package:wallpaper_application/features/widget/custom_cached_image.dart';
 import 'package:wallpaper_application/features/widget/loading_widget.dart';
@@ -72,9 +73,15 @@ class PhotosSearchDelegate extends SearchDelegate {
                   mainAxisSpacing: 10.0),
               itemCount: controller.value!.length,
               itemBuilder: (context, index) {
-                return CustomCachedNetworkImage(
-                  url: controller.value![index].src?.original,
-                  boxFit: BoxFit.cover,
+                return GestureDetector(
+                  onTap: () {
+                    RouteUtils.goToPhotoDetails(
+                        photoId: controller.value![index].id!);
+                  },
+                  child: CustomCachedNetworkImage(
+                    url: controller.value![index].src?.original,
+                    boxFit: BoxFit.cover,
+                  ),
                 );
               },
             ),

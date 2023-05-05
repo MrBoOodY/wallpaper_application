@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:path_provider/path_provider.dart';
 // ignore: depend_on_referenced_packages
 import 'package:requests_inspector/requests_inspector.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
@@ -70,6 +71,22 @@ class DioHelper {
       formData = FormData.fromMap(data);
     }
     return _handleException(dio.delete(url, data: formData));
+  }
+
+  Future<File> downloadFile(String url) async {
+    final dio = Dio();
+    final directory = await getApplicationDocumentsDirectory();
+    final response = await dio.get(
+      url,
+      options: Options(responseType: ResponseType.bytes),
+    );
+    final contentType = response.headers.map['content-type']?.first;
+    final extension = contentType?.split('/').last ?? 'jpg';
+    final filePath =
+        '${directory.path}/${DateTime.now().millisecondsSinceEpoch}.$extension';
+    final file = File(filePath);
+    await file.writeAsBytes(response.data);
+    return file;
   }
 
   Future<Map<String, dynamic>> doGetRequest({

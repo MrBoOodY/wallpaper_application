@@ -239,7 +239,7 @@ class __$$_PhotoCopyWithImpl<$Res> extends _$PhotoCopyWithImpl<$Res, _$_Photo>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Photo implements _Photo {
+class _$_Photo extends _Photo {
   const _$_Photo(
       {this.id,
       this.width,
@@ -251,7 +251,8 @@ class _$_Photo implements _Photo {
       this.avgColor,
       this.src,
       this.liked,
-      this.alt});
+      this.alt})
+      : super._();
 
   factory _$_Photo.fromJson(Map<String, dynamic> json) =>
       _$$_PhotoFromJson(json);
@@ -325,7 +326,7 @@ class _$_Photo implements _Photo {
   }
 }
 
-abstract class _Photo implements Photo {
+abstract class _Photo extends Photo {
   const factory _Photo(
       {final int? id,
       final int? width,
@@ -338,6 +339,7 @@ abstract class _Photo implements Photo {
       final ImageModel? src,
       final bool? liked,
       final String? alt}) = _$_Photo;
+  const _Photo._() : super._();
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$_Photo.fromJson;
 

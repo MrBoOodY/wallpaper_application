@@ -15,6 +15,7 @@ abstract class HomeRemoteDataSource {
   Future<Photo> getPhoto({required int id});
   Future<List<Photo>> searchPhotos(
       {required String query, int? page = 1, int? perPage = 20});
+  Future<void> downloadPhoto({required String url});
 }
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
@@ -60,8 +61,17 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<Photo> getPhoto({required int id}) async {
     try {
-      final response = await dio.doGetRequest(url: '${Urls.baseUrl}/$id');
+      final response = await dio.doGetRequest(url: '${Urls.photos}/$id');
       return Photo.fromJson(response);
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+  @override
+  Future<void> downloadPhoto({required String url}) async {
+    try {
+      await dio.downloadFile(url);
     } catch (error) {
       rethrow;
     }

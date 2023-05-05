@@ -1,12 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'photo_details_provider.dart';
+part of 'remove_from_fav_use_case.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$photoDetailsHash() => r'59cf8d3ae067d5ede0aa494ca4b7fbf7d66c001e';
+String _$removeFromFavUseCaseHash() =>
+    r'8e3ac77a28d883b68823def126b1bb29becac5f6';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -29,36 +30,29 @@ class _SystemHash {
   }
 }
 
-abstract class _$PhotoDetails
-    extends BuildlessAutoDisposeAsyncNotifier<PhotoDetailsState> {
-  late final int photoId;
+typedef RemoveFromFavUseCaseRef = AutoDisposeFutureProviderRef<void>;
 
-  FutureOr<PhotoDetailsState> build({
-    required int photoId,
-  });
-}
+/// See also [removeFromFavUseCase].
+@ProviderFor(removeFromFavUseCase)
+const removeFromFavUseCaseProvider = RemoveFromFavUseCaseFamily();
 
-/// See also [PhotoDetails].
-@ProviderFor(PhotoDetails)
-const photoDetailsProvider = PhotoDetailsFamily();
+/// See also [removeFromFavUseCase].
+class RemoveFromFavUseCaseFamily extends Family<AsyncValue<void>> {
+  /// See also [removeFromFavUseCase].
+  const RemoveFromFavUseCaseFamily();
 
-/// See also [PhotoDetails].
-class PhotoDetailsFamily extends Family<AsyncValue<PhotoDetailsState>> {
-  /// See also [PhotoDetails].
-  const PhotoDetailsFamily();
-
-  /// See also [PhotoDetails].
-  PhotoDetailsProvider call({
+  /// See also [removeFromFavUseCase].
+  RemoveFromFavUseCaseProvider call({
     required int photoId,
   }) {
-    return PhotoDetailsProvider(
+    return RemoveFromFavUseCaseProvider(
       photoId: photoId,
     );
   }
 
   @override
-  PhotoDetailsProvider getProviderOverride(
-    covariant PhotoDetailsProvider provider,
+  RemoveFromFavUseCaseProvider getProviderOverride(
+    covariant RemoveFromFavUseCaseProvider provider,
   ) {
     return call(
       photoId: provider.photoId,
@@ -77,33 +71,35 @@ class PhotoDetailsFamily extends Family<AsyncValue<PhotoDetailsState>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'photoDetailsProvider';
+  String? get name => r'removeFromFavUseCaseProvider';
 }
 
-/// See also [PhotoDetails].
-class PhotoDetailsProvider extends AutoDisposeAsyncNotifierProviderImpl<
-    PhotoDetails, PhotoDetailsState> {
-  /// See also [PhotoDetails].
-  PhotoDetailsProvider({
+/// See also [removeFromFavUseCase].
+class RemoveFromFavUseCaseProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [removeFromFavUseCase].
+  RemoveFromFavUseCaseProvider({
     required this.photoId,
   }) : super.internal(
-          () => PhotoDetails()..photoId = photoId,
-          from: photoDetailsProvider,
-          name: r'photoDetailsProvider',
+          (ref) => removeFromFavUseCase(
+            ref,
+            photoId: photoId,
+          ),
+          from: removeFromFavUseCaseProvider,
+          name: r'removeFromFavUseCaseProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$photoDetailsHash,
-          dependencies: PhotoDetailsFamily._dependencies,
+                  : _$removeFromFavUseCaseHash,
+          dependencies: RemoveFromFavUseCaseFamily._dependencies,
           allTransitiveDependencies:
-              PhotoDetailsFamily._allTransitiveDependencies,
+              RemoveFromFavUseCaseFamily._allTransitiveDependencies,
         );
 
   final int photoId;
 
   @override
   bool operator ==(Object other) {
-    return other is PhotoDetailsProvider && other.photoId == photoId;
+    return other is RemoveFromFavUseCaseProvider && other.photoId == photoId;
   }
 
   @override
@@ -112,15 +108,6 @@ class PhotoDetailsProvider extends AutoDisposeAsyncNotifierProviderImpl<
     hash = _SystemHash.combine(hash, photoId.hashCode);
 
     return _SystemHash.finish(hash);
-  }
-
-  @override
-  FutureOr<PhotoDetailsState> runNotifierBuild(
-    covariant PhotoDetails notifier,
-  ) {
-    return notifier.build(
-      photoId: photoId,
-    );
   }
 }
 // ignore_for_file: unnecessary_raw_strings, subtype_of_sealed_class, invalid_use_of_internal_member, do_not_use_environment, prefer_const_constructors, public_member_api_docs, avoid_private_typedef_functions

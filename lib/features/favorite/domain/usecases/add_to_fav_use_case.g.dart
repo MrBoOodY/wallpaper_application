@@ -1,13 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'toggle_like_dislike_use_case.dart';
+part of 'add_to_fav_use_case.dart';
 
 // **************************************************************************
 // RiverpodGenerator
 // **************************************************************************
 
-String _$toggleLikeDislikeUseCaseHash() =>
-    r'c6772d925eb183b7d3babe3f25d784c6d506be5a';
+String _$addToFavUseCaseHash() => r'f72a253c3d1f3d053c84f27cf16a4bf7ff772e55';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -30,32 +29,32 @@ class _SystemHash {
   }
 }
 
-typedef ToggleLikeDislikeUseCaseRef = AutoDisposeFutureProviderRef<bool>;
+typedef AddToFavUseCaseRef = AutoDisposeFutureProviderRef<void>;
 
-/// See also [toggleLikeDislikeUseCase].
-@ProviderFor(toggleLikeDislikeUseCase)
-const toggleLikeDislikeUseCaseProvider = ToggleLikeDislikeUseCaseFamily();
+/// See also [addToFavUseCase].
+@ProviderFor(addToFavUseCase)
+const addToFavUseCaseProvider = AddToFavUseCaseFamily();
 
-/// See also [toggleLikeDislikeUseCase].
-class ToggleLikeDislikeUseCaseFamily extends Family<AsyncValue<bool>> {
-  /// See also [toggleLikeDislikeUseCase].
-  const ToggleLikeDislikeUseCaseFamily();
+/// See also [addToFavUseCase].
+class AddToFavUseCaseFamily extends Family<AsyncValue<void>> {
+  /// See also [addToFavUseCase].
+  const AddToFavUseCaseFamily();
 
-  /// See also [toggleLikeDislikeUseCase].
-  ToggleLikeDislikeUseCaseProvider call({
-    required int adId,
+  /// See also [addToFavUseCase].
+  AddToFavUseCaseProvider call({
+    required Photo photo,
   }) {
-    return ToggleLikeDislikeUseCaseProvider(
-      adId: adId,
+    return AddToFavUseCaseProvider(
+      photo: photo,
     );
   }
 
   @override
-  ToggleLikeDislikeUseCaseProvider getProviderOverride(
-    covariant ToggleLikeDislikeUseCaseProvider provider,
+  AddToFavUseCaseProvider getProviderOverride(
+    covariant AddToFavUseCaseProvider provider,
   ) {
     return call(
-      adId: provider.adId,
+      photo: provider.photo,
     );
   }
 
@@ -71,41 +70,41 @@ class ToggleLikeDislikeUseCaseFamily extends Family<AsyncValue<bool>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'toggleLikeDislikeUseCaseProvider';
+  String? get name => r'addToFavUseCaseProvider';
 }
 
-/// See also [toggleLikeDislikeUseCase].
-class ToggleLikeDislikeUseCaseProvider extends AutoDisposeFutureProvider<bool> {
-  /// See also [toggleLikeDislikeUseCase].
-  ToggleLikeDislikeUseCaseProvider({
-    required this.adId,
+/// See also [addToFavUseCase].
+class AddToFavUseCaseProvider extends AutoDisposeFutureProvider<void> {
+  /// See also [addToFavUseCase].
+  AddToFavUseCaseProvider({
+    required this.photo,
   }) : super.internal(
-          (ref) => toggleLikeDislikeUseCase(
+          (ref) => addToFavUseCase(
             ref,
-            adId: adId,
+            photo: photo,
           ),
-          from: toggleLikeDislikeUseCaseProvider,
-          name: r'toggleLikeDislikeUseCaseProvider',
+          from: addToFavUseCaseProvider,
+          name: r'addToFavUseCaseProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$toggleLikeDislikeUseCaseHash,
-          dependencies: ToggleLikeDislikeUseCaseFamily._dependencies,
+                  : _$addToFavUseCaseHash,
+          dependencies: AddToFavUseCaseFamily._dependencies,
           allTransitiveDependencies:
-              ToggleLikeDislikeUseCaseFamily._allTransitiveDependencies,
+              AddToFavUseCaseFamily._allTransitiveDependencies,
         );
 
-  final int adId;
+  final Photo photo;
 
   @override
   bool operator ==(Object other) {
-    return other is ToggleLikeDislikeUseCaseProvider && other.adId == adId;
+    return other is AddToFavUseCaseProvider && other.photo == photo;
   }
 
   @override
   int get hashCode {
     var hash = _SystemHash.combine(0, runtimeType.hashCode);
-    hash = _SystemHash.combine(hash, adId.hashCode);
+    hash = _SystemHash.combine(hash, photo.hashCode);
 
     return _SystemHash.finish(hash);
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:wallpaper_application/common/routes/route_utils.dart';
 import 'package:wallpaper_application/common/utils.dart';
 import 'package:wallpaper_application/features/home/presentation/home/riverpod/provider/home_provider.dart';
 import 'package:wallpaper_application/features/home/presentation/photos_search_delegate/page/photos_search_delegate_page.dart';
@@ -27,7 +28,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final notifier = ref.watch(homeProvider);
+    final controller = ref.watch(homeProvider);
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -49,7 +50,7 @@ class _HomePageState extends ConsumerState<HomePage> {
         backgroundColor: Colors.white,
         elevation: 0.2,
       ),
-      body: notifier.isLoading
+      body: controller.isLoading
           ? const LoadingWidget()
           : Padding(
               padding: const EdgeInsets.all(10),
@@ -59,15 +60,21 @@ class _HomePageState extends ConsumerState<HomePage> {
                     crossAxisCount: 2,
                     crossAxisSpacing: 10.0,
                     mainAxisSpacing: 10.0),
-                itemCount: notifier.value!.wallpapers.length,
+                itemCount: controller.value!.wallpapers.length,
                 itemBuilder: (context, index) {
-                  if (notifier.value!.isPaginating &&
-                      index == notifier.value!.wallpapers.length) {
+                  if (controller.value!.isPaginating &&
+                      index == controller.value!.wallpapers.length) {
                     return Utils.putShimmer;
                   }
-                  return CustomCachedNetworkImage(
-                    url: notifier.value!.wallpapers[index].src?.original,
-                    boxFit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () {
+                      RouteUtils.goToPhotoDetails(
+                          photoId: controller.value!.wallpapers[index].id!);
+                    },
+                    child: CustomCachedNetworkImage(
+                      url: controller.value!.wallpapers[index].src?.original,
+                      boxFit: BoxFit.cover,
+                    ),
                   );
                 },
               ),

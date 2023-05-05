@@ -7,13 +7,32 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 // ignore: depend_on_referenced_packages
 import 'package:requests_inspector/requests_inspector.dart';
 import 'package:wallpaper_application/common/core_data_source/dio_helper/dio_helper.dart';
+import 'package:wallpaper_application/common/core_data_source/start_up_functionality.dart';
 import 'package:wallpaper_application/common/routes/routes/routes.dart';
+import 'package:wallpaper_application/features/widget/loading_widget.dart';
 
 void main() async {
   HttpOverrides.global = MyHttpOverrides();
 
-  runApp(const ProviderScope(
-    child: RequestsInspector(enabled: kDebugMode, child: MyApp()),
+  runApp(ProviderScope(
+    child: RequestsInspector(
+      enabled: kDebugMode,
+      child: Consumer(
+        builder: (context, ref, child) {
+          final startUp = ref.watch(startUpFunctionalityProvider);
+
+          if (startUp.isLoading) {
+            return const MaterialApp(
+              home: Scaffold(
+                body: LoadingWidget(),
+              ),
+            );
+          }
+
+          return const MyApp();
+        },
+      ),
+    ),
   ));
 }
 
